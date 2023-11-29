@@ -110,3 +110,9 @@
     left: 230px;
     bottom: 150px;
 }
+
+#carousel-section {
+    margin: 50px auto;
+    max-width: 500px;
+    max-height: 500px;
+}
