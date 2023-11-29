@@ -11,7 +11,8 @@ var handleSearch = function () {
     var requestUrl = 'https://perenual.com/api/species-list?key=sk-VfPS655d61aa10f743067&q=' + searchedPlant;
 
     fetch(requestUrl)
-        .then(function (response) {
+        .
+        then(function (response) {
             return response.json();
         })
         .then(function (data) {
