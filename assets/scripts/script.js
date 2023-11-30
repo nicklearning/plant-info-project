@@ -2,7 +2,6 @@ var searchBox = document.querySelector("#search-box");
 var searchBtn = document.querySelector("#search-btn");
 var searchForm = document.querySelector("#plant-search");
 var listItemsUl = document.querySelector("#list-Items-Ul")
-var carousel = document.querySelector(".carousel");
 
 
 
@@ -21,24 +20,40 @@ var handleSearch = function () {
         .then(function (data) {
             console.log(data);
             console.log(data.data);
+
+            // TODO for each array element: 1) create an a tag and add the class "carousel-item" 2) set the href equal to the plantID API 3) append the a tag to the .carousel class 4) create an img tag with the elementImgUrl as a source 5) append the img to the a tag
             for (let index = 0; index < data.data.length; index++) {
                 const element = data.data[index];
-
-                elementImgURL = element["default_image"].regular_url;
+                elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
                 console.log(elementImgURL);
-                var options = {
-                    fullWidth: true,
-                    indicators: true
-                 };
-                
 
-                var elems = document.querySelector('.carousel');
-                var instances = M.Carousel.init(elems, options);
-                console.log(instances);
+                if (elementImgURL != "") {
+
+                    var aTag = document.createElement("a");
+                    var carousel = document.getElementById("carousel")
+                    var imgTag = document.createElement("img");
+
+                    aTag.classList.add("carousel-item");
+                    aTag.setAttribute("href", "index");
+                    imgTag.setAttribute("src", elementImgURL);
+
+                    aTag.append(imgTag);
+                    carousel.append(aTag);
+                }
 
             }
+            var options = {
+                fullWidth: true,
+                indicators: true
+            };
+
+
+            var elems = document.querySelector('.carousel');
+            var instances = M.Carousel.init(elems, options);
+            console.log(instances);
         })
 };
+
 
 var plantId = "352"
 var getPlantInfo = function () {
