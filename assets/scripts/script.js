@@ -54,6 +54,22 @@ var handleSearch = function () {
         })
 };
 
+var getPlantInfo = function (plantId) {
+    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-irI665693a01c0c353234";
+
+    fetch(requestDetailsURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            // TODO: get the HREF for the plant & set it to the image. Get the Name of the plant, Scientific name.  
+            console.log(data)
+            
+        })
+        getPlantDescription();
+}
+
+
 
 var plantId = "352"
 var getPlantInfo = function () {
@@ -101,7 +117,7 @@ var getPlantInfo = function () {
 
         })
 };
-getPlantInfo();
+// getPlantDescription();
 
 searchForm.addEventListener("submit", function (event) {
     event.preventDefault();
