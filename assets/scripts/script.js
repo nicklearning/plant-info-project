@@ -10,7 +10,7 @@ var handleSearch = function () {
     var searchedPlant = searchBox.value;
     console.log(searchBox.value);
 
-    var requestUrl = 'https://perenual.com/api/species-list?key=sk-VfPS655d61aa10f743067&q=' + searchedPlant;
+    var requestUrl = 'https://perenual.com/api/species-list?key=sk-irI665693a01c0c353234&q=' + searchedPlant;
 
     fetch(requestUrl)
         .
@@ -57,7 +57,7 @@ var handleSearch = function () {
 
 var plantId = "352"
 var getPlantInfo = function () {
-    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-VfPS655d61aa10f743067";
+    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-irI665693a01c0c353234";
 
     fetch(requestDetailsURL)
         .then(function (response) {
