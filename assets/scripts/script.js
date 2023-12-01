@@ -66,16 +66,17 @@ var getPlantInfo = function (plantId) {
             return response.json();
         })
         .then(function (data) {
+            // TODO: get the PLant ID from the selected plant from the carousel. 
             console.log(data)
 
         })
-    getPlantDescription();
+    displayPlantDetails();
 }
 
 
 
-var plantId = "352"
-var getPlantInfo = function () {
+var plantId = "1026"
+var displayPlantDetails = function () {
     var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-irI665693a01c0c353234";
 
     fetch(requestDetailsURL)
@@ -83,6 +84,13 @@ var getPlantInfo = function () {
             return response.json();
         })
         .then(function (data) {
+
+            var plantPic = document.querySelector("#plant-pic")
+            var plantImg = document.createElement("img");
+            plantImg.src = data.default_image.small_url;
+            plantImg.alt = "Photo of a " + capitalizedPlantName;
+
+            plantPic.appendChild(plantImg)
 
             // Added function that will capitolize the first letter of the Name
             var plantNameEl = document.querySelector("#name-search");
@@ -120,7 +128,7 @@ var getPlantInfo = function () {
 
         })
 };
-// getPlantDescription();
+displayPlantDetails();
 
 searchForm.addEventListener("submit", function (event) {
     event.preventDefault();
