@@ -7,8 +7,10 @@ var listItemsUl = document.querySelector("#list-Items-Ul")
 
 
 var handleSearch = function () {
+
     var searchedPlant = searchBox.value;
     console.log(searchBox.value);
+    clearCarousel();
 
     var requestUrl = 'https://perenual.com/api/species-list?key=sk-irI665693a01c0c353234&q=' + searchedPlant;
 
@@ -21,20 +23,20 @@ var handleSearch = function () {
             console.log(data);
             console.log(data.data);
 
-            // TODO for each array element: 1) create an a tag and add the class "carousel-item" 2) set the href equal to the plantID API 3) append the a tag to the .carousel class 4) create an img tag with the elementImgUrl as a source 5) append the img to the a tag
             for (let index = 0; index < data.data.length; index++) {
                 const element = data.data[index];
                 elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
+
                 console.log(elementImgURL);
 
-                if (elementImgURL != "") {
+                if (elementImgURL != "" && elementImgURL != "https://perenual.com/storage/image/upgrade_access.jpg") {
 
                     var aTag = document.createElement("a");
                     var carousel = document.getElementById("carousel")
                     var imgTag = document.createElement("img");
 
                     aTag.classList.add("carousel-item");
-                    aTag.setAttribute("href", "index");
+
                     imgTag.setAttribute("src", elementImgURL);
 
                     aTag.append(imgTag);
@@ -49,6 +51,8 @@ var handleSearch = function () {
 
 
             var elems = document.querySelector('.carousel');
+            var carouselSection = document.getElementById("carousel-section");
+            carouselSection.style.display = "block";
             var instances = M.Carousel.init(elems, options);
             console.log(instances);
         })
@@ -62,11 +66,10 @@ var getPlantInfo = function (plantId) {
             return response.json();
         })
         .then(function (data) {
-            // TODO: get the HREF for the plant & set it to the image. Get the Name of the plant, Scientific name.  
             console.log(data)
-            
+
         })
-        getPlantDescription();
+    getPlantDescription();
 }
 
 
@@ -124,7 +127,9 @@ searchForm.addEventListener("submit", function (event) {
     handleSearch();
 })
 
+function clearCarousel() {
+    var carousel = document.querySelector(".carousel");
+    carousel.innerHTML = ""
+}
 
-document.addEventListener('DOMContentLoaded', function () {
 
-});
