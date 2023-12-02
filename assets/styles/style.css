@@ -2,18 +2,20 @@
 
 
 
-
-
 #header {
     background-color: rgb(84, 235, 152);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 
 }
 
-#plant-info-app {
+ #plant-info-app {
     position: relative;
-    bottom: 45px;
-    left: 300px;
-}
+    bottom: 23px;
+    left: 118px;
+} 
 
 #search-box {
     background-color: white;
@@ -36,6 +38,13 @@
 
 #feature-plant {
     background-color: rgb(76, 131, 76);
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+#feature-plant section {
+    margin: 20px;
 }
 
 #plant-summary {
@@ -43,6 +52,8 @@
     color: rgb(133, 173, 38);
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
 
 }
 
@@ -51,6 +62,8 @@
     color: rgb(133, 173, 38);
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
 }
 
 #latin-name {
@@ -67,20 +80,24 @@
     background-color: greenyellow;
     color: black;
     border-radius: 20px;
-    position: relative;
-    left: 550px;
-    bottom: 10px;
+    /* position: relative; */
+    /* left: 550px; */
+    /* bottom: 10px; */
 }
 
 #saved-plants {
     background-color: rgb(76, 131, 76);
+    display: flex;
+    
 }
 
-#plant-card {
+.plant-card {
+    margin: 20px;
     background-color: rgb(126, 78, 78);
     color: rgb(133, 173, 38);
     border-radius: 18px;
 }
+
 
 #sav-plant-name {
     text-align: center;
@@ -94,11 +111,7 @@
     bottom: 150px;
 }
 
-#plant-card2 {
-    background-color: rgb(126, 78, 78);
-    color: rgb(133, 173, 38);
-    border-radius: 18px;
-}
+
 
 #sav-plant-name2 {
     text-align: center;
@@ -117,5 +130,4 @@
     max-width: 500px;
     max-height: 500px;
     display: none;
-
 }

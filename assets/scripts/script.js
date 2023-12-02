@@ -2,6 +2,7 @@ var searchBox = document.querySelector("#search-box");
 var searchBtn = document.querySelector("#search-btn");
 var searchForm = document.querySelector("#plant-search");
 var listItemsUl = document.querySelector("#list-Items-Ul")
+var carousel = document.querySelector("#carousel")
 
 
 
@@ -10,9 +11,9 @@ var handleSearch = function () {
 
     var searchedPlant = searchBox.value;
     console.log(searchBox.value);
-    clearCarousel();
+    clearCarousel(); // onlu display the images of the most recent search
 
-    var requestUrl = 'https://perenual.com/api/species-list?key=sk-irI665693a01c0c353234&q=' + searchedPlant;
+    var requestUrl = 'https://perenual.com/api/species-list?key=sk-Um6J656a8237133673265&q=' + searchedPlant; // e.g. asparagus
 
     fetch(requestUrl)
         .
@@ -29,8 +30,10 @@ var handleSearch = function () {
 
                 console.log(elementImgURL);
 
-                if (elementImgURL != "" && elementImgURL != "https://perenual.com/storage/image/upgrade_access.jpg") {
+                if (elementImgURL != "" && elementImgURL != "https://perenual.com/storage/image/upgrade_access.jpg") { // filter out unwanted image url's 
+                    var elementID = element.id;
 
+                    // create the structe of the carousel
                     var aTag = document.createElement("a");
                     var carousel = document.getElementById("carousel")
                     var imgTag = document.createElement("img");
@@ -38,6 +41,9 @@ var handleSearch = function () {
                     aTag.classList.add("carousel-item");
 
                     imgTag.setAttribute("src", elementImgURL);
+                    imgTag.setAttribute("data-id", elementID);
+
+                    console.log(imgTag.dataset);
 
                     aTag.append(imgTag);
                     carousel.append(aTag);
@@ -54,32 +60,30 @@ var handleSearch = function () {
             var carouselSection = document.getElementById("carousel-section");
             carouselSection.style.display = "block";
             var instances = M.Carousel.init(elems, options);
-            console.log(instances);
+
         })
 };
 
 var getPlantInfo = function (plantId) {
-    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-irI665693a01c0c353234";
+    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
+    console.log(requestDetailsURL);
 
     fetch(requestDetailsURL)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            // TODO: get the PLant ID from the selected plant from the carousel. 
+
             console.log(data)
 
         })
-    displayPlantDetails();
+    displayPlantDetails(requestDetailsURL); 
 }
 
 
+var displayPlantDetails = function (url) { // argument is "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
 
-var plantId = "1026"
-var displayPlantDetails = function () {
-    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-irI665693a01c0c353234";
-
-    fetch(requestDetailsURL)
+    fetch(url)
         .then(function (response) {
             return response.json();
         })
@@ -121,14 +125,11 @@ var displayPlantDetails = function () {
             var sunDetailsEl = document.querySelector("#maturity-details");
             sunDetailsEl.textContent = data.dimension;
 
-
-
-
             console.log(data);
 
         })
 };
-displayPlantDetails();
+
 
 searchForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -136,8 +137,19 @@ searchForm.addEventListener("submit", function (event) {
 })
 
 function clearCarousel() {
-    var carousel = document.querySelector(".carousel");
     carousel.innerHTML = ""
 }
 
 
+carousel.addEventListener("click", function (event) {
+    // TODO add event delegation
+    console.log(event);
+    var plantId = event.target.dataset.id; // set the data attribute of the selected image to the id of the plant
+    getPlantInfo(plantId); // makes an API call to get the information about a specific plant
+})
+
+// TODO clear out the plant details if details are already being displayed
+/* function clearPlantDetails() {
+    var featurePlantSection = document.querySelector("#feature-plant");
+    featurePlantSection.innerHTML = ""
+} */
