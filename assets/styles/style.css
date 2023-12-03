@@ -123,9 +123,15 @@
     bottom: 150px;
 }
 
-#carousel-section {
+#carousel {
     margin: 50px auto;
     max-width: 500px;
     max-height: 500px;
+}
+
+#carousel-section {
     display: none;
+    background-image: url("../images/off-white-texture.PNG");
+    background-size: cover;
+    background-position: center;
 }

@@ -29,6 +29,44 @@ var handleSearch = function () {
         })
 };
 
+function displayCarousel(data) {
+    for (let index = 0; index < data.length; index++) {
+        const element = data[index];
+        elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
+
+        console.log(elementImgURL);
+
+        if (elementImgURL != "" && elementImgURL != "https://perenual.com/storage/image/upgrade_access.jpg") { // filter out unwanted image url's 
+            var elementID = element.id;
+
+            // create the structe of the carousel
+            var aTag = document.createElement("a");
+            var carousel = document.getElementById("carousel")
+            var imgTag = document.createElement("img");
+
+            aTag.classList.add("carousel-item");
+
+            imgTag.setAttribute("src", elementImgURL);
+            imgTag.setAttribute("data-id", elementID);
+
+            console.log(imgTag.dataset);
+
+            aTag.append(imgTag);
+            carousel.append(aTag);
+        }
+
+    }
+    var options = {
+        fullWidth: true,
+        indicators: true
+    };
+    var elems = document.querySelector('.carousel');
+    var carouselSection = document.getElementById("carousel-section");
+    carouselSection.style.display = "flex";
+    var instances = M.Carousel.init(elems, options);
+
+}
+
 var getPlantInfo = function (plantId) {
     var requestDetailsURL = `https://perenual.com/api/species/details/${plantId}?key=${apiKey}`;
     console.log(requestDetailsURL);
@@ -136,43 +174,3 @@ function clearPlantDetails() {
     featurePlantSection.style.display = "none";
 }
 
-
-
-function displayCarousel(data) {
-    for (let index = 0; index < data.length; index++) {
-        const element = data[index];
-        elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
-
-        console.log(elementImgURL);
-
-        if (elementImgURL != "" && elementImgURL != "https://perenual.com/storage/image/upgrade_access.jpg") { // filter out unwanted image url's 
-            var elementID = element.id;
-
-            // create the structe of the carousel
-            var aTag = document.createElement("a");
-            var carousel = document.getElementById("carousel")
-            var imgTag = document.createElement("img");
-
-            aTag.classList.add("carousel-item");
-
-            imgTag.setAttribute("src", elementImgURL);
-            imgTag.setAttribute("data-id", elementID);
-
-            console.log(imgTag.dataset);
-
-            aTag.append(imgTag);
-            carousel.append(aTag);
-        }
-
-    }
-    var options = {
-        fullWidth: true,
-        indicators: true
-    };
-
-    var elems = document.querySelector('.carousel');
-    var carouselSection = document.getElementById("carousel-section");
-    carouselSection.style.display = "flex";
-    var instances = M.Carousel.init(elems, options);
-
-}
