@@ -11,11 +11,11 @@
 
 }
 
- #plant-info-app {
+#plant-info-app {
     position: relative;
     bottom: 23px;
     left: 118px;
-} 
+}
 
 #search-box {
     background-color: white;
@@ -38,14 +38,12 @@
 
 #feature-plant {
     background-color: rgb(76, 131, 76);
-    display: flex;
-    justify-content: space-evenly;
+    display: none;
+    justify-content: space-around;
 
 }
 
-#feature-plant section {
-    margin: 20px;
-}
+
 
 #plant-summary {
     background-color: rgb(126, 78, 78);
@@ -88,7 +86,7 @@
 #saved-plants {
     background-color: rgb(76, 131, 76);
     display: flex;
-    
+
 }
 
 .plant-card {

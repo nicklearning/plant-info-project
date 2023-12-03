@@ -4,16 +4,18 @@ var searchForm = document.querySelector("#plant-search");
 var listItemsUl = document.querySelector("#list-Items-Ul")
 var carousel = document.querySelector("#carousel")
 
-
+//var key1 = "" // Jessse add other API Key variable here
+var key2 = "sk-irI665693a01c0c353234" // Jesse's second key
+//var key3 = 'sk-Um6J656a8237133673265'; // Nick's key
+var apiKey = key2;
 
 
 var handleSearch = function () {
-
     var searchedPlant = searchBox.value;
     console.log(searchBox.value);
-    clearCarousel(); // onlu display the images of the most recent search
+    clearCarousel(); // only display the images of the most recent search
 
-    var requestUrl = 'https://perenual.com/api/species-list?key=sk-Um6J656a8237133673265&q=' + searchedPlant; // e.g. asparagus
+    var requestUrl = `https://perenual.com/api/species-list?key=${apiKey}&q=${searchedPlant}`
 
     fetch(requestUrl)
         .
@@ -23,49 +25,12 @@ var handleSearch = function () {
         .then(function (data) {
             console.log(data);
             console.log(data.data);
-
-            for (let index = 0; index < data.data.length; index++) {
-                const element = data.data[index];
-                elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
-
-                console.log(elementImgURL);
-
-                if (elementImgURL != "" && elementImgURL != "https://perenual.com/storage/image/upgrade_access.jpg") { // filter out unwanted image url's 
-                    var elementID = element.id;
-
-                    // create the structe of the carousel
-                    var aTag = document.createElement("a");
-                    var carousel = document.getElementById("carousel")
-                    var imgTag = document.createElement("img");
-
-                    aTag.classList.add("carousel-item");
-
-                    imgTag.setAttribute("src", elementImgURL);
-                    imgTag.setAttribute("data-id", elementID);
-
-                    console.log(imgTag.dataset);
-
-                    aTag.append(imgTag);
-                    carousel.append(aTag);
-                }
-
-            }
-            var options = {
-                fullWidth: true,
-                indicators: true
-            };
-
-
-            var elems = document.querySelector('.carousel');
-            var carouselSection = document.getElementById("carousel-section");
-            carouselSection.style.display = "block";
-            var instances = M.Carousel.init(elems, options);
-
+            displayCarousel(data.data); //create the carousel
         })
 };
 
 var getPlantInfo = function (plantId) {
-    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
+    var requestDetailsURL = `https://perenual.com/api/species/details/${plantId}?key=${apiKey}`;
     console.log(requestDetailsURL);
 
     fetch(requestDetailsURL)
@@ -77,57 +42,68 @@ var getPlantInfo = function (plantId) {
             console.log(data)
 
         })
-    displayPlantDetails(requestDetailsURL); 
+    displayPlantDetails(requestDetailsURL); // display the plant details
 }
 
 
 var displayPlantDetails = function (url) { // argument is "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
+    var plantDetailSection = document.getElementById("feature-plant");
 
-    fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
+    if (plantDetailSection.style.display == "flex") {
+        clearPlantDetails();
+        displayPlantDetails(url)
+    } else {
 
-            var plantPic = document.querySelector("#plant-pic")
-            var plantImg = document.createElement("img");
-            plantImg.src = data.default_image.small_url;
-            plantImg.alt = "Photo of a " + capitalizedPlantName;
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
 
-            plantPic.appendChild(plantImg)
+                plantDetailSection.style.display = "flex";
+                console.log(plantDetailSection)
 
-            // Added function that will capitolize the first letter of the Name
-            var plantNameEl = document.querySelector("#name-search");
-            function capitalizeFirstLetter(string) {
-                return string.charAt(0).toUpperCase() + string.slice(1);
-            }
-            var capitalizedPlantName = capitalizeFirstLetter(data.common_name);
-            plantNameEl.textContent = capitalizedPlantName;
 
-            var scientificNameEl = document.querySelector("#latin-search");
-            scientificNameEl.textContent = data.scientific_name;
+                var plantPic = document.querySelector("#plant-pic-section")
+                var plantImg = document.createElement("img");
+                plantImg.src = data.default_image.small_url;
+                plantImg.alt = "Photo of a " + capitalizedPlantName;
 
-            var plantTypeEl = document.querySelector("#type-search");
-            plantTypeEl.textContent = data.type + ", " + data.cycle;
+                plantPic.appendChild(plantImg)
 
-            var plantFamilyEl = document.querySelector("#family-search");
-            plantFamilyEl.textContent = data.family;
+                // Added function that will capitolize the first letter of the Name
+                var plantNameEl = document.querySelector("#name-search");
+                function capitalizeFirstLetter(string) {
+                    return string.charAt(0).toUpperCase() + string.slice(1);
+                }
+                var capitalizedPlantName = capitalizeFirstLetter(data.common_name);
+                plantNameEl.textContent = capitalizedPlantName;
 
-            var plantDescriptionEl = document.querySelector("#description-search");
-            plantDescriptionEl.textContent = data.description;
+                var scientificNameEl = document.querySelector("#latin-search");
+                scientificNameEl.textContent = data.scientific_name;
 
-            var wateringDetailsEl = document.querySelector("#watering-details");
-            wateringDetailsEl.textContent = data.watering;
+                var plantTypeEl = document.querySelector("#type-search");
+                plantTypeEl.textContent = data.type + ", " + data.cycle;
 
-            var sunDetailsEl = document.querySelector("#sun-details");
-            sunDetailsEl.textContent = data.sunlight;
+                var plantFamilyEl = document.querySelector("#family-search");
+                plantFamilyEl.textContent = data.family;
 
-            var sunDetailsEl = document.querySelector("#maturity-details");
-            sunDetailsEl.textContent = data.dimension;
+                var plantDescriptionEl = document.querySelector("#description-search");
+                plantDescriptionEl.textContent = data.description;
 
-            console.log(data);
+                var wateringDetailsEl = document.querySelector("#watering-details");
+                wateringDetailsEl.textContent = data.watering;
 
-        })
+                var sunDetailsEl = document.querySelector("#sun-details");
+                sunDetailsEl.textContent = data.sunlight;
+
+                var sunDetailsEl = document.querySelector("#maturity-details");
+                sunDetailsEl.textContent = data.dimension;
+
+                console.log(data);
+
+            })
+    }
 };
 
 
@@ -142,14 +118,61 @@ function clearCarousel() {
 
 
 carousel.addEventListener("click", function (event) {
-    // TODO add event delegation
+
     console.log(event);
-    var plantId = event.target.dataset.id; // set the data attribute of the selected image to the id of the plant
-    getPlantInfo(plantId); // makes an API call to get the information about a specific plant
+    if (event.target.tagName == "IMG") {
+
+        var plantId = event.target.dataset.id; // set the data attribute of the selected image to the id of the plant
+        getPlantInfo(plantId); // makes an API call to get the information about a specific plant
+
+    }
 })
 
-// TODO clear out the plant details if details are already being displayed
-/* function clearPlantDetails() {
+
+function clearPlantDetails() {
     var featurePlantSection = document.querySelector("#feature-plant");
-    featurePlantSection.innerHTML = ""
-} */
+    var plantPicSection = document.querySelector("#plant-pic-section");
+    plantPicSection.innerHTML = "";
+    featurePlantSection.style.display = "none";
+}
+
+
+
+function displayCarousel(data) {
+    for (let index = 0; index < data.length; index++) {
+        const element = data[index];
+        elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
+
+        console.log(elementImgURL);
+
+        if (elementImgURL != "" && elementImgURL != "https://perenual.com/storage/image/upgrade_access.jpg") { // filter out unwanted image url's 
+            var elementID = element.id;
+
+            // create the structe of the carousel
+            var aTag = document.createElement("a");
+            var carousel = document.getElementById("carousel")
+            var imgTag = document.createElement("img");
+
+            aTag.classList.add("carousel-item");
+
+            imgTag.setAttribute("src", elementImgURL);
+            imgTag.setAttribute("data-id", elementID);
+
+            console.log(imgTag.dataset);
+
+            aTag.append(imgTag);
+            carousel.append(aTag);
+        }
+
+    }
+    var options = {
+        fullWidth: true,
+        indicators: true
+    };
+
+    var elems = document.querySelector('.carousel');
+    var carouselSection = document.getElementById("carousel-section");
+    carouselSection.style.display = "flex";
+    var instances = M.Carousel.init(elems, options);
+
+}
