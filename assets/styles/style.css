@@ -5,17 +5,26 @@
 #header {
     background-color: rgb(84, 235, 152);
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: space-evenly;
     align-items: center;
-
 }
 
- #plant-info-app {
+
+
+
+#logo {
+    margin: 2% 0;
+    width: 30%;
+}
+
+
+
+#plant-info-app {
     position: relative;
     bottom: 23px;
     left: 118px;
-} 
+}
 
 #search-box {
     background-color: white;
@@ -38,14 +47,12 @@
 
 #feature-plant {
     background-color: rgb(76, 131, 76);
-    display: flex;
-    justify-content: space-evenly;
+    display: none;
+    justify-content: space-around;
 
 }
 
-#feature-plant section {
-    margin: 20px;
-}
+
 
 #plant-summary {
     background-color: rgb(126, 78, 78);
@@ -104,7 +111,7 @@
 #saved-plants {
     background-color: rgb(76, 131, 76);
     display: flex;
-    
+
 }
 
 .plant-card {
@@ -141,9 +148,21 @@
     bottom: 150px;
 }
 
-#carousel-section {
+#carousel {
     margin: 50px auto;
     max-width: 500px;
     max-height: 500px;
+}
+
+#carousel-section {
     display: none;
+    background-image: url("../images/off-white-texture.PNG");
+    background-size: cover;
+    background-position: center;
+}
+
+@media screen and (max-width: 600px) {
+    .nav-wrapper {
+        flex-direction: column;
+    }
 }
