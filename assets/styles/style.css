@@ -61,7 +61,7 @@
     border-bottom-left-radius: 25px;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
-
+    
 }
 
 #plant-details {
@@ -84,14 +84,32 @@
 }
 
 #plant-type {
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 #plant-family {
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 #plant-description {
-    padding-bottom: 3px;
-    font-weight: 500;
+    margin-bottom: 10px;
+    /* font-weight: 500; */
+}
+#watering {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#sun {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#size {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#size-details {
+    margin-bottom: 10px;
 }
 
 #link-list {
@@ -103,6 +121,7 @@
     background-color: greenyellow;
     color: black;
     border-radius: 20px;
+    margin: 10px;
     /* position: relative; */
     /* left: 550px; */
     /* bottom: 10px; */

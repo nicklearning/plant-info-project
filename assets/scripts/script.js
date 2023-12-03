@@ -4,10 +4,11 @@ var searchForm = document.querySelector("#plant-search");
 var listItemsUl = document.querySelector("#list-Items-Ul")
 var carousel = document.querySelector("#carousel")
 
-//var key1 = "" // Jessse add other API Key variable here
+var key1 = "sk-Um6J656a8237133673265" // Jesse's first key
 var key2 = "sk-irI665693a01c0c353234" // Jesse's second key
 //var key3 = 'sk-Um6J656a8237133673265'; // Nick's key
-var apiKey = key2;
+var key4 = "sk-D6mD656d07bf610723296" // Jesse's third key
+var apiKey = key4;
 
 
 var handleSearch = function () {
@@ -15,14 +16,7 @@ var handleSearch = function () {
     console.log(searchBox.value);
     clearCarousel(); // only display the images of the most recent search
 
-<<<<<<< HEAD
-    // Key 1
-    // var requestUrl = 'https://perenual.com/api/species-list?key=sk-Um6J656a8237133673265&q=' + searchedPlant; // e.g. asparagus
-    // Key 2
-    var requestUrl = 'https://perenual.com/api/species-list?key=sk-VfPS655d61aa10f743067&q=' + searchedPlant; // e.g. asparagus
-=======
     var requestUrl = `https://perenual.com/api/species-list?key=${apiKey}&q=${searchedPlant}`
->>>>>>> 942f0d33d268beb0dd43b071ebc55f81f36735e6
 
     fetch(requestUrl)
         .
@@ -75,14 +69,7 @@ function displayCarousel(data) {
 }
 
 var getPlantInfo = function (plantId) {
-<<<<<<< HEAD
-    // Key 1
-    // var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
-    // Key 2
-    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-VfPS655d61aa10f743067";
-=======
     var requestDetailsURL = `https://perenual.com/api/species/details/${plantId}?key=${apiKey}`;
->>>>>>> 942f0d33d268beb0dd43b071ebc55f81f36735e6
     console.log(requestDetailsURL);
 
     fetch(requestDetailsURL)
@@ -94,11 +81,7 @@ var getPlantInfo = function (plantId) {
             console.log(data)
 
         })
-<<<<<<< HEAD
-    displayPlantDetails(requestDetailsURL);
-=======
     displayPlantDetails(requestDetailsURL); // display the plant details
->>>>>>> 942f0d33d268beb0dd43b071ebc55f81f36735e6
 }
 
 
@@ -110,19 +93,11 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
         displayPlantDetails(url)
     } else {
 
-<<<<<<< HEAD
-            var plantPic = document.querySelector("#plant-pic")
-            var plantImg = document.createElement("img");
-            plantPic.innerHTML = "";
-            plantImg.src = data.default_image.small_url;
-            plantImg.alt = "Photo of a " + capitalizedPlantName;
-=======
         fetch(url)
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
->>>>>>> 942f0d33d268beb0dd43b071ebc55f81f36735e6
 
                 plantDetailSection.style.display = "flex";
                 console.log(plantDetailSection)
@@ -145,69 +120,57 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
 
                 var scientificNameEl = document.querySelector("#latin-search");
                 scientificNameEl.textContent = data.scientific_name;
-
-<<<<<<< HEAD
-            // TODO: Add splash text for these details based on results. 
-            var wateringDetailsEl = document.querySelector("#watering-details");
-            // frequent, average, minimum, none
-
-            if (data.watering.toLowerCase() === "frequent") {
-
-                wateringDetailsEl.textContent = "Frequent Watering: Requires regular watering for optimal growth and health, typically every 1-2 days.";
-            }
-            else if (data.watering.toLowerCase() === "average") {
-
-                wateringDetailsEl.textContent = "Average Watering: Suggested watering intervals are moderate, usually every 3-4 days to keep the plant adequately hydrated.";
-            } else if (data.watering.toLowerCase() === "minimum") {
-
-                wateringDetailsEl.textContent = "Minimum Watering: Needs infrequent watering, approximately once a week to prevent overhydration and maintain its vitality.";
-            } else if (data.watering.toLowerCase() === "none") {
-
-                wateringDetailsEl.textContent = "No Watering Needed: Rarely requires watering, thriving well without additional moisture due to its natural resilience.";
-            } else {
-                wateringDetailsEl.textContent = "Watering details not specified for this plant.";
-            }
-
-            // var sunDetailsEl = document.querySelector("#sun-details");
-            // sunDetailsEl.textContent = data.sunlight;
-            // var sunDetails = data.sunlight;
-
-            var sunDetailsEl = document.querySelector("#sun-details");
-            // added function for capitolizing and formatting the results from the array for readability. 
-            if (Array.isArray(data.sunlight)) {
-                function formatSunDetails(sunDetails) {
-                    return sunDetails.map(function (item) {
-                        return capitalizeFirstLetter(item.trim());
-                    }).join(', ');
-                }
-
-                var formattedSunDetails = formatSunDetails(data.sunlight);
-                sunDetailsEl.textContent = formattedSunDetails;
-            } else {
-                sunDetailsEl.textContent = data.sunlight;
-            }
-
-            var maturityDetailsEl = document.querySelector("#maturity-details");
-            maturityDetailsEl.textContent = data.dimension;
-=======
+                
                 var plantTypeEl = document.querySelector("#type-search");
                 plantTypeEl.textContent = data.type + ", " + data.cycle;
-
+                
                 var plantFamilyEl = document.querySelector("#family-search");
                 plantFamilyEl.textContent = data.family;
 
                 var plantDescriptionEl = document.querySelector("#description-search");
                 plantDescriptionEl.textContent = data.description;
->>>>>>> 942f0d33d268beb0dd43b071ebc55f81f36735e6
 
+
+                // This adds descriptive text for the watering details.
                 var wateringDetailsEl = document.querySelector("#watering-details");
-                wateringDetailsEl.textContent = data.watering;
+                // frequent, average, minimum, none
+
+                if (data.watering.toLowerCase() === "frequent") {
+
+                    wateringDetailsEl.textContent = "Frequent Watering: Requires regular watering for optimal growth and health, typically every 1-2 days.";
+                }
+                else if (data.watering.toLowerCase() === "average") {
+
+                    wateringDetailsEl.textContent = "Average Watering: Suggested watering intervals are moderate, usually every 3-4 days to keep the plant adequately hydrated.";
+                } else if (data.watering.toLowerCase() === "minimum") {
+
+                    wateringDetailsEl.textContent = "Minimum Watering: Needs infrequent watering, approximately once a week to prevent overhydration and maintain its vitality.";
+                } else if (data.watering.toLowerCase() === "none") {
+
+                    wateringDetailsEl.textContent = "No Watering Needed: Rarely requires watering, thriving well without additional moisture due to its natural resilience.";
+                } else {
+                    wateringDetailsEl.textContent = "Watering details not specified for this plant.";
+                }
+
 
                 var sunDetailsEl = document.querySelector("#sun-details");
-                sunDetailsEl.textContent = data.sunlight;
+                // added function for capitolizing and formatting the results from the array for readability. 
+                if (Array.isArray(data.sunlight)) {
+                    function formatSunDetails(sunDetails) {
+                        return sunDetails.map(function (item) {
+                            return capitalizeFirstLetter(item.trim());
+                        }).join(', ');
+                    }
 
-                var sunDetailsEl = document.querySelector("#maturity-details");
-                sunDetailsEl.textContent = data.dimension;
+                    var formattedSunDetails = formatSunDetails(data.sunlight);
+                    sunDetailsEl.textContent = formattedSunDetails;
+                } else {
+                    sunDetailsEl.textContent = data.sunlight;
+                }
+
+                var sizeDetailsEl = document.querySelector("#size-details");
+                sizeDetailsEl.textContent = "In the correct conditions, this plant can grow to be " + data.dimension;
+
 
                 console.log(data);
 
