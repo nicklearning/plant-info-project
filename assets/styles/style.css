@@ -5,11 +5,20 @@
 #header {
     background-color: rgb(84, 235, 152);
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: space-evenly;
     align-items: center;
-
 }
+
+
+
+
+#logo {
+    margin: 2% 0;
+    width: 30%;
+}
+
+
 
 #plant-info-app {
     position: relative;
@@ -134,4 +143,10 @@
     background-image: url("../images/off-white-texture.PNG");
     background-size: cover;
     background-position: center;
+}
+
+@media screen and (max-width: 600px) {
+    .nav-wrapper {
+        flex-direction: column;
+    }
 }

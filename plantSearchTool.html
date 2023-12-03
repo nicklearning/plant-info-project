@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Info App</title>
+
+    <link rel="stylesheet" href="assets/styles/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+</head>
+
+<body>
+    <header id="header" class="row">
+        <h1 id="plant-info-app" class="col s12 m4">Plant Info App</h1>
+        <form class="col s12 m4 offset-m4" id="plant-search">
+            <input id="search-box" type="text" autocomplete="on" placeholder="Search for a plant!" />
+            <button class="waves-effect waves-light btn" id="search-btn">Search</button>
+        </form>
+
+
+    </header>
+    <hr>
+    <section id="carousel-section">
+        <div id="carousel" class="carousel carousel-slider">
+            <!-- HTML elements are generated dynamically -->
+        </div>
+    </section>
+    <section id="feature-plant" class="row">
+        <section class="col s12 l4" id="plant-pic-section">
+
+        </section>
+
+        <section class="col s12 l4" id="plant-summary">
+            <h2 id="plant-name">Plant Name: <span id="name-search"></span></h2>
+            <p id="latin-name">Latin Name: <span id="latin-search"></span></p>
+            <p id="plant-type">Plant Type: <span id="type-search"></span></p>
+            <p id="plant-family">Family: <span id="family-search"></span></p>
+            <p id="plant-description">Description: <span id="description-search"></span></p>
+        </section>
+
+        <section class="col s12 l4" id="plant-details">
+            <h3>Plant Details</h3>
+            <h4 id="watering">Watering: </h4>
+            <p><span id="watering-details"></span></p>
+
+            <h4 id="sun">Sun: </h4>
+            <p><span id="sun-details"></span></p>
+
+            <h4 id="maturity">Size: </h4>
+            <p><span id="maturity-details"></span></p>
+
+            <button class="waves-effect waves-light btn" id="save-btn">Save</button>
+        </section>
+    </section>
+
+    <section id="saved-plants" class="row">
+        <section id="plant-card" class="col s12 m6 plant-card">
+            <img src="http://placekitten.com/200/200" alt="placeholder alt tag">
+            <h4 id="sav-plant-name">Plant Name</h4>
+            <p id="sav-plant-details">Plant Details</p>
+        </section>
+        <section id="plant-card2" class="col s12 m6 plant-card">
+            <img src="http://placekitten.com/200/200" alt="placeholder alt tag">
+            <h4 id="sav-plant-name2">Plant Name</h4>
+            <p id="sav-plant-details2">Plant Details</p>
+        </section>
+
+    </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+    <script src="./assets/scripts/script.js"></script>
+
+
+</body>
+
+</html>
