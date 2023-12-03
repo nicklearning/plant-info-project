@@ -13,7 +13,10 @@ var handleSearch = function () {
     console.log(searchBox.value);
     clearCarousel(); // onlu display the images of the most recent search
 
-    var requestUrl = 'https://perenual.com/api/species-list?key=sk-Um6J656a8237133673265&q=' + searchedPlant; // e.g. asparagus
+    // Key 1
+    // var requestUrl = 'https://perenual.com/api/species-list?key=sk-Um6J656a8237133673265&q=' + searchedPlant; // e.g. asparagus
+    // Key 2
+    var requestUrl = 'https://perenual.com/api/species-list?key=sk-VfPS655d61aa10f743067&q=' + searchedPlant; // e.g. asparagus
 
     fetch(requestUrl)
         .
@@ -65,7 +68,10 @@ var handleSearch = function () {
 };
 
 var getPlantInfo = function (plantId) {
-    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
+    // Key 1
+    // var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
+    // Key 2
+    var requestDetailsURL = "https://perenual.com/api/species/details/" + plantId + "?key=sk-VfPS655d61aa10f743067";
     console.log(requestDetailsURL);
 
     fetch(requestDetailsURL)
@@ -77,7 +83,7 @@ var getPlantInfo = function (plantId) {
             console.log(data)
 
         })
-    displayPlantDetails(requestDetailsURL); 
+    displayPlantDetails(requestDetailsURL);
 }
 
 
@@ -91,6 +97,7 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
 
             var plantPic = document.querySelector("#plant-pic")
             var plantImg = document.createElement("img");
+            plantPic.innerHTML = "";
             plantImg.src = data.default_image.small_url;
             plantImg.alt = "Photo of a " + capitalizedPlantName;
 
@@ -116,14 +123,48 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
             var plantDescriptionEl = document.querySelector("#description-search");
             plantDescriptionEl.textContent = data.description;
 
+            // TODO: Add splash text for these details based on results. 
             var wateringDetailsEl = document.querySelector("#watering-details");
-            wateringDetailsEl.textContent = data.watering;
+            // frequent, average, minimum, none
+
+            if (data.watering.toLowerCase() === "frequent") {
+
+                wateringDetailsEl.textContent = "Frequent Watering: Requires regular watering for optimal growth and health, typically every 1-2 days.";
+            }
+            else if (data.watering.toLowerCase() === "average") {
+
+                wateringDetailsEl.textContent = "Average Watering: Suggested watering intervals are moderate, usually every 3-4 days to keep the plant adequately hydrated.";
+            } else if (data.watering.toLowerCase() === "minimum") {
+
+                wateringDetailsEl.textContent = "Minimum Watering: Needs infrequent watering, approximately once a week to prevent overhydration and maintain its vitality.";
+            } else if (data.watering.toLowerCase() === "none") {
+
+                wateringDetailsEl.textContent = "No Watering Needed: Rarely requires watering, thriving well without additional moisture due to its natural resilience.";
+            } else {
+                wateringDetailsEl.textContent = "Watering details not specified for this plant.";
+            }
+
+            // var sunDetailsEl = document.querySelector("#sun-details");
+            // sunDetailsEl.textContent = data.sunlight;
+            // var sunDetails = data.sunlight;
 
             var sunDetailsEl = document.querySelector("#sun-details");
-            sunDetailsEl.textContent = data.sunlight;
+            // added function for capitolizing and formatting the results from the array for readability. 
+            if (Array.isArray(data.sunlight)) {
+                function formatSunDetails(sunDetails) {
+                    return sunDetails.map(function (item) {
+                        return capitalizeFirstLetter(item.trim());
+                    }).join(', ');
+                }
 
-            var sunDetailsEl = document.querySelector("#maturity-details");
-            sunDetailsEl.textContent = data.dimension;
+                var formattedSunDetails = formatSunDetails(data.sunlight);
+                sunDetailsEl.textContent = formattedSunDetails;
+            } else {
+                sunDetailsEl.textContent = data.sunlight;
+            }
+
+            var maturityDetailsEl = document.querySelector("#maturity-details");
+            maturityDetailsEl.textContent = data.dimension;
 
             console.log(data);
 

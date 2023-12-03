@@ -69,6 +69,22 @@
 #latin-name {
     position: relative;
     bottom: 10px;
+    padding-bottom: 3px;
+}
+
+#latin-search{
+    font-style: italic;
+}
+
+#plant-type {
+    margin-bottom: 3px;
+}
+#plant-family {
+    margin-bottom: 3px;
+}
+#plant-description {
+    padding-bottom: 3px;
+    font-weight: 500;
 }
 
 #link-list {
