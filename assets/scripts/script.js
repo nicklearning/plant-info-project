@@ -105,6 +105,7 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
 
                 var plantPic = document.querySelector("#plant-pic-section")
                 var plantImg = document.createElement("img");
+                plantImg.classList.add("responsive-img")
                 plantImg.src = data.default_image.small_url;
                 plantImg.alt = "Photo of a " + capitalizedPlantName;
 
@@ -120,10 +121,10 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
 
                 var scientificNameEl = document.querySelector("#latin-search");
                 scientificNameEl.textContent = data.scientific_name;
-                
+
                 var plantTypeEl = document.querySelector("#type-search");
                 plantTypeEl.textContent = data.type + ", " + data.cycle;
-                
+
                 var plantFamilyEl = document.querySelector("#family-search");
                 plantFamilyEl.textContent = data.family;
 
