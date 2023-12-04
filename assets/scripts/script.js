@@ -6,9 +6,16 @@ var carousel = document.querySelector("#carousel")
 
 var key1 = "sk-Um6J656a8237133673265" // Jesse's first key
 var key2 = "sk-irI665693a01c0c353234" // Jesse's second key
-//var key3 = 'sk-Um6J656a8237133673265'; // Nick's key
+var key3 = 'sk-Um6J656a8237133673265'; // Nick's key
 var key4 = "sk-D6mD656d07bf610723296" // Jesse's third key
-var apiKey = key4;
+var apiKey = key3;
+
+var currentPlant = {
+    id: "",
+    imgSrc: "",
+    plantName: "",
+    details: "",
+}
 
 
 var handleSearch = function () {
@@ -82,11 +89,14 @@ var getPlantInfo = function (plantId) {
 
         })
     displayPlantDetails(requestDetailsURL); // display the plant details
+
 }
 
 
 var displayPlantDetails = function (url) { // argument is "https://perenual.com/api/species/details/" + plantId + "?key=sk-Um6J656a8237133673265";
     var plantDetailSection = document.getElementById("feature-plant");
+
+
 
     if (plantDetailSection.style.display == "flex") {
         clearPlantDetails();
@@ -99,13 +109,15 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
             })
             .then(function (data) {
 
+
                 plantDetailSection.style.display = "flex";
                 console.log(plantDetailSection)
 
 
                 var plantPic = document.querySelector("#plant-pic-section")
                 var plantImg = document.createElement("img");
-                plantImg.classList.add("responsive-img")
+                plantImg.classList.add("responsive-img");
+                plantImg.setAttribute("id", "currentPlantImg");
                 plantImg.src = data.default_image.small_url;
                 plantImg.alt = "Photo of a " + capitalizedPlantName;
 
@@ -172,8 +184,9 @@ var displayPlantDetails = function (url) { // argument is "https://perenual.com/
                 var sizeDetailsEl = document.querySelector("#size-details");
                 sizeDetailsEl.textContent = "In the correct conditions, this plant can grow to be " + data.dimension;
 
-
+                currentPlant.id = data.id;
                 console.log(data);
+                console.log(currentPlant.id);
 
             })
     }
@@ -209,3 +222,65 @@ function clearPlantDetails() {
     featurePlantSection.style.display = "none";
 }
 
+var saveButton = document.getElementById("save-btn");
+
+saveButton.addEventListener("click", function () {
+    var localStorageData = JSON.parse(localStorage.getItem('plants')) || []; // variable is equal to the current items in local storage or it is an empty array.
+    var selectedPlantImg = document.getElementById("currentPlantImg");
+
+    var selectedPlantName = document.getElementById("name-search");
+    var selectedPlantDetails = document.getElementById("description-search");
+    currentPlant.imgSrc = selectedPlantImg.src;
+    currentPlant.plantName = selectedPlantName.textContent;
+    currentPlant.details = selectedPlantDetails.textContent;
+
+
+    if (localStorageData.some(plant => plant.id === currentPlant.id)) {
+        console.log("Plant already in local storage");
+    } else {
+        localStorageData.push(currentPlant); // pushes the saved plant object into the array
+        localStorage.setItem("plants", JSON.stringify(localStorageData));
+    }
+
+    displaySavedPlants();
+})
+
+
+function displaySavedPlants() {
+    var savedPlantSection = document.getElementById("saved-plants");
+    savedPlantSection.style.display = "flex";
+    savedPlantSection.style.flexDirection = "column";
+    var localStorageData = JSON.parse(localStorage.getItem('plants'));
+
+    // Clear existing content in savedPlantSection
+    savedPlantSection.innerHTML = '';
+
+
+    for (let index = 0; index < localStorageData.length; index++) {
+        const element = localStorageData[index];
+        
+        var savedPlantCard = document.createElement("section");
+        savedPlantCard.setAttribute("id", `plant-card-${currentPlant.id}`);
+        savedPlantCard.classList.add("col", "s11", "plant-card");
+
+
+        var savedPlantImg = document.createElement("img");
+        savedPlantImg.setAttribute("src", localStorageData[index].imgSrc);
+        savedPlantImg.setAttribute("id", "saved-plant-img");
+
+        var savedPlantName = document.createElement("h4");
+        savedPlantName.setAttribute("id", "sav-plant-name");
+        savedPlantName.textContent = localStorageData[index].plantName;
+
+        var savedPlantDescription = document.createElement("p");
+        savedPlantDescription.setAttribute("id", "sav-plant-details");
+        savedPlantDescription.textContent = localStorageData[index].details;
+
+        savedPlantCard.append(savedPlantImg);
+        savedPlantCard.append(savedPlantName);
+        savedPlantCard.append(savedPlantDescription);
+
+        savedPlantSection.append(savedPlantCard);
+    }
+
+}
