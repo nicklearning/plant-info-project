@@ -13,15 +13,21 @@
 </head>
 
 <body>
-    <header id="header" class="row">
-        <h1 id="plant-info-app" class="col s12 m4">Plant Info App</h1>
-        <form class="col s12 m4 offset-m4" id="plant-search">
-            <input id="search-box" type="text" autocomplete="on" placeholder="Search for a plant!" />
-            <button class="waves-effect waves-light btn" id="search-btn">Search</button>
-        </form>
+    <div id="header" class="row">
+        <div id="logoContainer" class="col s12 m2">
+            <img id="plant-search-logo" class="responsive-img" src="./assets/images/All-About-Plants.jpg"></img>
+        </div>
+        <div class="col s12 m4 flow-text">
+            <h3 id="page-header">Search For A Plant!</h3>
+        </div>
+        <div id="form-section" class="col s12 m4">
+            <form class="col s12" id="plant-search">
+                <input id="search-box" type="text" autocomplete="on" placeholder="Search for a plant!" />
+                <button class="waves-effect waves-light btn" id="search-btn">Search</button>
+            </form>
+        </div>
 
-
-    </header>
+    </div>
     <hr>
     <section id="carousel-section">
         <div id="carousel" class="carousel carousel-slider">
@@ -29,11 +35,11 @@
         </div>
     </section>
     <section id="feature-plant" class="row">
-        <section class="col s12 l4" id="plant-pic-section">
+        <section class="col s12 m4" id="plant-pic-section">
 
         </section>
-
-        <section class="col s12 l4" id="plant-summary">
+        <!-- TODO Make this all dynamic when plant is searched.  -->
+        <section class="col s12 m4" id="plant-summary">
             <h2 id="plant-name"><span id="name-search"></span></h2>
             <p id="latin-name">Latin Name: <span id="latin-search"></span></p>
             <p id="plant-type">Plant Type: <span id="type-search"></span></p>
@@ -41,7 +47,7 @@
             <p id="plant-description">Description: <span id="description-search"></span></p>
         </section>
 
-        <section class="col s12 l4" id="plant-details">
+        <section class="col s12 m4" id="plant-details">
             <h3>Plant Details</h3>
             <h4 id="watering">Watering </h4>
             <p><span id="watering-details"></span></p>
@@ -57,16 +63,11 @@
     </section>
 
     <section id="saved-plants" class="row">
-        <section id="plant-card" class="col s12 m6 plant-card">
+        <!-- <section id="plant-card" class="col s12 plant-card">
             <img src="http://placekitten.com/200/200" alt="placeholder alt tag">
             <h4 id="sav-plant-name">Plant Name</h4>
             <p id="sav-plant-details">Plant Details</p>
-        </section>
-        <section id="plant-card2" class="col s12 m6 plant-card">
-            <img src="http://placekitten.com/200/200" alt="placeholder alt tag">
-            <h4 id="sav-plant-name2">Plant Name</h4>
-            <p id="sav-plant-details2">Plant Details</p>
-        </section>
+        </section> -->
 
     </section>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
