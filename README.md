@@ -32,7 +32,7 @@ https://docs.trefle.io/docs/guides/getting-started#rate-limiting
 
 
 ## Additional features for adding another API
-Use google maps to show user a location for a nearby nursery/plant store
+Use Google maps to show user a location for a nearby nursery/plant store
 
 
 ## UI Frameworks other than Bootstrap. 
