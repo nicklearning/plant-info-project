@@ -18,24 +18,13 @@ var currentPlant = {
     details: "",
 }
 
-// When user searches for an item that desnt exist, alert them
-
-// If value of search is 0 run displayModal function
-
-// when user clicks try again, it sets the display to the the Modal element to none
-
 
 var dialog = document.createElement("dialog");
-
-
 // Function that displays modal 
 function createModal() {
 
     var body = document.querySelector("body")
-
-
     dialog.setAttribute("id", "dialog-alert");
-
 
     var dialogText = document.createElement("p");
     dialogText.textContent = "Plant not found. Please try again!";
@@ -47,17 +36,14 @@ function createModal() {
     tryAgainBtn.textContent = "Try Again";
     console.log(tryAgainBtn.textContent)
 
-
     body.appendChild(dialog)
     dialog.appendChild(dialogText);
     dialog.appendChild(tryAgainBtn);
-
 }
 
 function closeModal() {
     dialog.close();
 }
-
 
 var handleSearch = function () {
     var searchedPlant = searchBox.value;
@@ -90,9 +76,10 @@ var handleSearch = function () {
 };
 
 function displayCarousel(data) {
+
     for (let index = 0; index < data.length; index++) {
         const element = data[index];
-        elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
+        var elementImgURL = element["default_image"]?.regular_url || ""; //  element["default_image"]?.regular_url will safely handle cases where default_image is null or undefined, providing a default empty string if it's the case.
 
         console.log(elementImgURL);
 
@@ -120,10 +107,14 @@ function displayCarousel(data) {
         fullWidth: true,
         indicators: true
     };
-    var elems = document.querySelector('.carousel');
+
     var carouselSection = document.getElementById("carousel-section");
     carouselSection.style.display = "flex";
+
+    // initialize the carousel
+    var elems = document.querySelectorAll('.carousel');
     var instances = M.Carousel.init(elems, options);
+
 
 }
 
