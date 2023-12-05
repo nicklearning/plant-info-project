@@ -283,6 +283,16 @@ a {
         margin: 0 auto;
     }
 
+    #plant-summary-contents {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    #plant-details-contents {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
     #feature-plant #plant-summary,
     #feature-plant #plant-details {
         width: 80%;
