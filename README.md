@@ -10,7 +10,7 @@ Plant Info App
 An app where you can search for plants, then be presented with gardening tips and pictures and resources. 
 
 ## User story:
-As a gardener I would like to more about the plants that can grow in my area, and how I can take care of them. 
+As a gardener I would like to more about growing different plants, and how I can take care of them. 
 
 ## Wireframe :
 
