@@ -5,11 +5,11 @@ var listItemsUl = document.querySelector("#list-Items-Ul")
 var carousel = document.querySelector("#carousel")
 var saveButton = document.getElementById("save-btn");
 
-// var key1 = "sk-VfPS655d61aa10f743067" // Jesse's first key Used for presentation only
+var key1 = "sk-VfPS655d61aa10f743067" // Jesse's first key Used for presentation only
 var key2 = "sk-irI665693a01c0c353234" // Jesse's second key
 var key3 = 'sk-Um6J656a8237133673265'; // Nick's key
 var key4 = "sk-D6mD656d07bf610723296" // Jesse's third key
-var apiKey = key4;
+var apiKey = key1;
 
 var currentPlant = {
     id: "",
@@ -310,7 +310,7 @@ function displaySavedPlants() {
         const element = localStorageData[index];
 
         var savedPlantCard = document.createElement("section");
-        savedPlantCard.setAttribute("id", `plant-card-${currentPlant.id}`);
+        savedPlantCard.setAttribute("id", `plant-card-${element.id}`);
         savedPlantCard.classList.add("col", "s11", "plant-card");
 
 
@@ -343,7 +343,7 @@ function displaySavedPlants() {
         descriptionAndButtonSection.style.flexDirection = "column";
 
         removeBtn.addEventListener("click", function () {
-            deleteItemFromLocal(currentPlant.id)
+            deleteItemFromLocal(element.id)
             displaySavedPlants();
         })
 

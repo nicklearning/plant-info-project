@@ -250,6 +250,13 @@ a {
     margin: 5%;
 }
 
+#go-back {
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+}
+
 .remove-btn {
     background-color: greenyellow;
     color: black;
