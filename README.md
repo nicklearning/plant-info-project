@@ -1,47 +1,35 @@
-# plant-info-project
+# All About Plants!
 Plant info project using server-side APIs to give information to the user
 
-# Day 1 Project Checklist
 
-## Project Title: 
-Plant Info App
+## Description
+All About Plants allows you to search for plants and learn about how to care for them. You can save your plants to the Garden Pal app if you want to revisit them later. 
 
-## Project description: 
-An app where you can search for plants, then be presented with gardening tips and pictures and resources. 
+This project is a practice in calling and manipulating data from an API, and dynamically creating elements on our webpage using JavaScript, based on what the user searches. 
 
-## User story:
-As a gardener I would like to more about growing different plants, and how I can take care of them. 
+This application uses two APIs from perenual.com. One is a database with over 10,000 plants, all with different searchable parameters. We allow our user to search for the common name of the plant they want to learn more about. 
+The second API contains a description, watering, sun, and size details. We then display these details after the user selects a plant. 
 
-## Wireframe :
+### User Story 
+“As a gardener, I would like to be able to search for different plants, and learn about how I can take care of them.”
 
-![Wireframe of our App Idea.](./assets/images/wireframe1.png)
+## Screenshot
+![screenshot of portfolio website](./assets/images/screenshot1.png)
 
-
-## APIs to be used
-Perenual
-https://perenual.com/docs/api
-
-Wikipedia - Provide  links using query selectors
-
-USDA Plant Database
-https://rapidapi.com/tuvshno/api/plants10/details
-https://plants-api-docs.netlify.app/#tag/rarity/paths/~1plants~1rarity/get
-
-Trefle
-https://docs.trefle.io/docs/guides/getting-started#rate-limiting
+![screenshot of portfolio website](./assets/images/screenshot2.png)
 
 
-## Additional features for adding another API
-Use Google maps to show user a location for a nearby nursery/plant store
+## Link
+[Click here to view the project!](https://nicklearning.github.io/plant-info-project/)
 
 
-## UI Frameworks other than Bootstrap. 
+## Credits
+Created by Team Zen
+Nick Smith, Anthony Castilo, Jacob Brown, Jesse Bradbury
 
-Bulma
-https://bulma.io
+Thank you to Perannual for their awesome API. 
+[https://perenual.com](https://perenual.com)
 
-Materialize
-https://materializecss.com
+Materialize is used as the UI Framework 
+[https://materializecss.com](https://materializecss.com)
 
-## Rough Breakdown of tasks and who will receive those tasks.
-Done in Trello
