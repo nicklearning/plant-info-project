@@ -227,44 +227,30 @@ a {
 }
 
 #saved-plants {
-    background-color: rgb(76, 131, 76);
-    display: flex;
+    /* background-color: (76, 131, 76, 0.342); */
+    display: none;
 
 }
 
 .plant-card {
-    margin: 20px;
+    margin: 20px auto;
     background-color: rgb(126, 78, 78);
     color: rgb(133, 173, 38);
     border-radius: 18px;
+    display: flex;
 }
 
-
-#sav-plant-name {
-    text-align: center;
-    position: relative;
-    bottom: 200px;
-}
 
 #sav-plant-details {
-    position: relative;
-    left: 230px;
-    bottom: 150px;
+    margin: 2% 2%;
+    line-height: 1.5;
+}
+
+#sav-plant-name {
+    margin: 2% 2%;
 }
 
 
-
-#sav-plant-name2 {
-    text-align: center;
-    position: relative;
-    bottom: 200px;
-}
-
-#sav-plant-details2 {
-    position: relative;
-    left: 230px;
-    bottom: 150px;
-}
 
 #carousel {
     margin: 50px auto;
@@ -279,6 +265,10 @@ a {
     background-position: center;
 }
 
+#saved-plant-img {
+    border-radius: 18px;
+}
+
 @media screen and (max-width: 890px) {
     #feature-plant {
         flex-direction: column;
@@ -288,7 +278,7 @@ a {
         margin: 2% auto;
     }
 
-   #plant-pic-section {
+    #plant-pic-section {
         width: 80%;
         margin: 0 auto;
     }
