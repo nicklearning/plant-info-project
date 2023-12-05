@@ -143,9 +143,11 @@ a {
 }
 
 #latin-name {
-    position: relative;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    /* position: relative;
     bottom: 10px;
-    padding-bottom: 3px;
+    padding-bottom: 3px; */
 }
 
 #latin-search {
@@ -158,8 +160,13 @@ a {
     min-height: 1px;
 }
 
+#name-search {
+    margin-left: 10px;
+}
+
 #plant-type {
-    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 #plant-search-anchor {
@@ -167,10 +174,12 @@ a {
 }
 
 #plant-family {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 #plant-description {
+    margin-left: 10px;
     margin-bottom: 10px;
     /* font-weight: 500; */
 }
@@ -178,20 +187,38 @@ a {
 #watering {
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#plant-details-contents h3 {
+    margin-left: 10px;
+}
+
+#watering-details {
+    display: inline-block;
+    margin-left: 10px;
 }
 
 #sun {
+    margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
+#sun-details {
+    margin-left: 10px;
+}
+
 #size {
+    margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 #size-details {
+    display: inline-block;
     margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 #feature-plant #plant-summary,
@@ -224,7 +251,7 @@ a {
 }
 
 .remove-btn {
-    background-color:  greenyellow;
+    background-color: greenyellow;
     color: black;
     border-radius: 20px;
     margin-top: 2%;
@@ -234,7 +261,7 @@ a {
 }
 
 .remove-btn:hover {
-    background-color:  greenyellow;
+    background-color: greenyellow;
 }
 
 #saved-plants {
@@ -280,6 +307,22 @@ a {
     border-radius: 18px;
 }
 
+@media screen and (max-width: 900px) {
+    .plant-card {
+        flex-direction: column;
+    }
+
+    .remove-btn {
+        margin-bottom: 2%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #saved-plants {
+        background-color: rgba(76, 131, 76, 0.342);
+    }
+}
+
 @media screen and (max-width: 890px) {
     #feature-plant {
         flex-direction: column;
@@ -299,10 +342,7 @@ a {
         margin-right: 10%;
     }
 
-    #plant-details-contents {
-        margin-left: 10%;
-        margin-right: 10%;
-    }
+
 
     #feature-plant #plant-summary,
     #feature-plant #plant-details {
