@@ -3,7 +3,7 @@
     --brown: #8d6e63;
     --lightGreen: #8bc34a;
     --darkGreen: #2e7d32;
-    --green: #4caf50;
+    --white: #ffffff;
 
 }
 
@@ -132,7 +132,7 @@ a {
 
 #plant-summary {
     background-color: var(--brown);
-    color: var(--green);
+    color: var(--white);
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -142,7 +142,7 @@ a {
 
 #plant-details {
     background-color: var(--brown);
-    color: var(--green);
+    color: var(--white);
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 25px;
@@ -289,7 +289,7 @@ a {
 .plant-card {
     margin: 20px auto;
     background-color: var(--brown);
-    color: var(--green);
+    color: var(--white);
     border-radius: 18px;
     display: flex;
 }
