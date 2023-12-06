@@ -1,11 +1,18 @@
-:root {}
+:root {
+    --red: #e57373;
+    --brown: #8d6e63;
+    --lightGreen: #8bc34a;
+    --darkGreen: #2e7d32;
+    --green: #4caf50;
+
+}
 
 * {
     box-sizing: border-box;
 }
 
 #header {
-    background-color: salmon;
+    background-color: var(--red);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -26,7 +33,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: salmon;
+    background-color: var(--red);
 }
 
 #plant-search {
@@ -103,7 +110,7 @@ a {
 }
 
 #search-btn {
-    background-color: greenyellow;
+    background-color: var(--lightGreen);
     color: black;
     /* position: relative; */
     border-radius: 10px;
@@ -115,7 +122,7 @@ a {
 }
 
 #feature-plant {
-    background-color: rgba(76, 131, 76, 0.342);
+    background-color: var(--darkGreen);
     display: none;
     justify-content: space-between;
 
@@ -124,8 +131,8 @@ a {
 
 
 #plant-summary {
-    background-color: rgb(126, 78, 78);
-    color: rgb(133, 173, 38);
+    background-color: var(--brown);
+    color: var(--green);
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -134,8 +141,8 @@ a {
 }
 
 #plant-details {
-    background-color: rgb(126, 78, 78);
-    color: rgb(133, 173, 38);
+    background-color: var(--brown);
+    color: var(--green);
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 25px;
@@ -244,7 +251,7 @@ a {
 }
 
 #save-btn {
-    background-color: greenyellow;
+    background-color: var(--lightGreen);
     color: black;
     border-radius: 20px;
     margin: 5%;
@@ -258,7 +265,7 @@ a {
 }
 
 .remove-btn {
-    background-color: greenyellow;
+    background-color: var(--lightGreen);
     color: black;
     border-radius: 20px;
     margin-top: 2%;
@@ -268,7 +275,7 @@ a {
 }
 
 .remove-btn:hover {
-    background-color: greenyellow;
+    background-color: var(--lightGreen);
 }
 
 #saved-plants {
@@ -279,8 +286,8 @@ a {
 
 .plant-card {
     margin: 20px auto;
-    background-color: rgb(126, 78, 78);
-    color: rgb(133, 173, 38);
+    background-color: var(--brown);
+    color: var(--green);
     border-radius: 18px;
     display: flex;
 }
@@ -326,7 +333,7 @@ a {
     }
 
     #saved-plants {
-        background-color: rgba(76, 131, 76, 0.342);
+        background-color: var(--darkGreen);
     }
 }
 
