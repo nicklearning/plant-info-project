@@ -1,11 +1,18 @@
-:root {}
+:root {
+    --red: #ef5350;
+    --lightGreen: #76ff03;
+    --darkGreen: #2e7d32;
+    --brown: #8d6e63;
+
+
+}
 
 * {
     box-sizing: border-box;
 }
 
 #header {
-    background-color: salmon;
+    background-color: var(--red);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -26,7 +33,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: salmon;
+    background-color: var(--red);
 }
 
 #plant-search {
@@ -115,7 +122,7 @@ a {
 }
 
 #feature-plant {
-    background-color: rgba(76, 131, 76, 0.342);
+    background-color: var(--darkGreen);
     display: none;
     justify-content: space-between;
 
@@ -124,8 +131,8 @@ a {
 
 
 #plant-summary {
-    background-color: rgb(126, 78, 78);
-    color: rgb(133, 173, 38);
+    background-color: var(--brown);
+    color: var(--lightGreen);
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
     border-top-right-radius: 25px;
@@ -134,8 +141,8 @@ a {
 }
 
 #plant-details {
-    background-color: rgb(126, 78, 78);
-    color: rgb(133, 173, 38);
+    background-color: var(--brown);
+    color: var(--lightGreen);
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 25px;
@@ -234,8 +241,8 @@ a {
 
 .plant-card {
     margin: 20px auto;
-    background-color: rgb(126, 78, 78);
-    color: rgb(133, 173, 38);
+    background-color: var(--brown);
+    color: var(--lightGreen);
     border-radius: 18px;
     display: flex;
 }
@@ -281,16 +288,6 @@ a {
     #plant-pic-section {
         width: 80%;
         margin: 0 auto;
-    }
-
-    #plant-summary-contents {
-        margin-left: 10%;
-        margin-right: 10%;
-    }
-
-    #plant-details-contents {
-        margin-left: 10%;
-        margin-right: 10%;
     }
 
     #feature-plant #plant-summary,
